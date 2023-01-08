@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SubCitySeeder::class);
         $this->call(RegionSeeder::class);
         $this->call(CountrySeeder::class);
+        $this-> call(UserExperienceSeeder::class);
     }
 }

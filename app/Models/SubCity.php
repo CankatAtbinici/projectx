@@ -12,5 +12,5 @@ class SubCity extends Model
     public function city()
     {
         return $this->belongsTo(Cities::class, 'city_id', 'id');
-    }
+    }   
 }
