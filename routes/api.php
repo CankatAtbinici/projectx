@@ -26,9 +26,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
-
 // test controller
 
 Route::controller(test::class)->group(function () {
@@ -60,12 +57,9 @@ Route::controller(LoginController::class) -> group(function() {
 });
 
 Route::get('/profile', function () {
-
     $user = JWTAuth::parseToken();
     $user = JWTAuth::parseToken()->authenticate();
     return response()->json($user) ;
-  
-      
 })->middleware('jwt.auth');
 
 

@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RegionSeeder::class);
         $this->call(CountrySeeder::class);
         $this-> call(UserExperienceSeeder::class);
+        $this->call(GendersSeeder::class);
     }
 }
