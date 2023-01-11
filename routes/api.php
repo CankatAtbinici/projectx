@@ -4,6 +4,8 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewUserController;
+use App\Http\Controllers\MeetingPlaningController;
+
 use App\Http\Controllers\Test;
 use App\Models\UserExperienceCategory;
 use Illuminate\Http\Request;
@@ -43,8 +45,16 @@ Route::controller(NewUserController::class)->group(function () {
 });
 
 Route::controller(CityController::class) -> group(function() {
+    
     Route::get("/city" , "index");
 });
+
+
+
+
+//NEW MEETİNG RESERVATİON CREATE ROUTE
+Route::post('/newmeeting',' MeetingPlaningController@store')->middleware('jwt.auth');
+
 
 Route::controller(Test::class) -> group(function() {
     Route::get("/test" , function() {
@@ -61,6 +71,8 @@ Route::get('/profile', function () {
     $user = JWTAuth::parseToken()->authenticate();
     return response()->json($user) ;
 })->middleware('jwt.auth');
+
+
 
 
 

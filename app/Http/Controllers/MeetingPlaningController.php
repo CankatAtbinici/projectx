@@ -35,7 +35,23 @@ class MeetingPlaningController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $meet_plan = new MeetingPlaning();
+        try {
+            $meet_plan->id = $request->id;
+            $meet_plan->client_id = $request->client_id;
+            $meet_plan->exp_id = $request->exp_id;
+            $meet_plan->request_time = $request->request_time;
+            $meet_plan->reservation_time = $request->reservation_time;
+            $meet_plan->status = $request->status;
+            $meet_plan->save();
+        } catch (\Exception $e) {
+            return response() -> json([
+                'status' => 'error',
+                'code' => 301,
+                'message' => $e->getMessage(),
+                'data' => null,
+            ]);
+        }
     }
 
     /**
