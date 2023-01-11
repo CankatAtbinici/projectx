@@ -17,13 +17,14 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string("name");
             $table->string("surname");
+            $table->string("username");
             $table->timestamp("birthday");
             $table->integer("gender_id");
             $table->string("email");
             $table->string("phone");
             $table->integer("city_id");
-            $table->integer("sub_city_id");
-            $table->string("street");
+            $table->integer("sub_city_id")->nullable();
+            $table->string("street")->nullable();
             $table->integer("country_id")->nullable();
             $table->string("web_site")->nullable();
             $table->string("facebook")->nullable();
@@ -32,9 +33,9 @@ class CreateUsersTable extends Migration
             $table->string("linkedln")->nullable();
             $table->string("youtube")->nullable();
             $table->string("pinterest")->nullable();
-            $table->integer("db_name");
+            $table->integer("db_name")->nullable();
             $table->string("password");
-            $table->boolean("status");
+            $table->boolean("status")->nullable();
             $table->timestamps();
         });
     }
