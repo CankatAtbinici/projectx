@@ -7,6 +7,10 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+
+use App\Models\Rates;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Comments;
+
 class Users extends Model implements AuthenticatableContract, JWTSubject
 {
     use Authenticatable;
@@ -47,5 +51,13 @@ class Users extends Model implements AuthenticatableContract, JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function rates() {
+        return $this->hasMany(Rates::class, 'user_id', 'id');
+    }
+
+    public function comments() {
+        return $this->hasMany(Comments::class , "to_user_id" , "id");
     }
 }

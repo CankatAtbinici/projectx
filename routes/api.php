@@ -5,13 +5,17 @@ use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewUserController;
 use App\Http\Controllers\MeetingPlaningController;
+use App\Http\Controllers\HomePageController;
 
 use App\Http\Controllers\Test;
 use App\Models\UserExperienceCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +34,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // test controller
 
-Route::controller(test::class)->group(function () {
+/*
+Route::controller(Test::class)->group(function () {
     Route::post("/test", "store");
+    Route::get("/test", "getTest");
+     
 });
+*/
+
+
 
 //User Controller
 
@@ -45,7 +55,6 @@ Route::controller(NewUserController::class)->group(function () {
 });
 
 Route::controller(CityController::class) -> group(function() {
-    
     Route::get("/city" , "index");
 });
 
@@ -56,9 +65,12 @@ Route::controller(CityController::class) -> group(function() {
 Route::post('/newmeeting',' MeetingPlaningController@store')->middleware('jwt.auth');
 
 
+
+
 Route::controller(Test::class) -> group(function() {
-    Route::get("/test" , function() {
+    Route::get("/haha" , function() {
         return "kldaşslkdşalksd";
+        
     });
 });
 
@@ -67,12 +79,16 @@ Route::controller(LoginController::class) -> group(function() {
 });
 
 Route::get('/profile', function () {
-    $user = JWTAuth::parseToken();
     $user = JWTAuth::parseToken()->authenticate();
     return response()->json($user) ;
 })->middleware('jwt.auth');
 
 
+//Mail;
 
+//LandingPage
+
+
+    Route::get("/landing" , [HomePageController::class , "getAllUserData"]  );
 
 

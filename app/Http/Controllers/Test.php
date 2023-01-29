@@ -22,4 +22,9 @@ class Test extends Controller
     
     }
 
+    public function getTest() 
+    {
+        return "lkajslkajsdlkjsad";
+    }
+
 }

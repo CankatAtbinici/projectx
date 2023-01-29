@@ -11,6 +11,7 @@ class SubCity extends Model
     use HasFactory;
     public function city()
     {
-        return $this->belongsTo(Cities::class, 'city_id', 'id');
+        $allRates = $this->belongsTo(Cities::class, 'city_id', 'id'); 
+        return $allRates ;
     }   
 }

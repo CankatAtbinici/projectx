@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends Controller
@@ -11,7 +12,7 @@ class LoginController extends Controller
     public function isLogin(Request $request) {
         $credentials = $request->only(['email', 'password']);
         $token = JWTAuth::attempt($credentials);
-    
+        
         if ($token) {
             return response()->json(compact('token'));
         } else {

@@ -36,6 +36,7 @@ class CreateUsersTable extends Migration
             $table->integer("db_name")->nullable();
             $table->string("password");
             $table->boolean("status")->nullable();
+            $table->integer("credit")->nullable();
             $table->timestamps();
         });
     }

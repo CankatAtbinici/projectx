@@ -1,6 +1,9 @@
 <?php
 
+use App\Mail\NotifyMail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +18,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware('debugbar');
+}
+);
 
+Route::get('/send-email', function() 
+{
+        $array = [
+            "name" => "Cankat", 
+            "surname" => "Atbinici",
+            "date" => date('Y/m/d')
+        ];
+   
+          Mail::send('mails.demo_mail' ,$array , function($message) {
+                $message->to('cankatbinici@gmail.com' , 'deneme')->subject("bu bir test mailidir");
+         });
+        return "başarılı";
+});
