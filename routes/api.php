@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewUserController;
 use App\Http\Controllers\MeetingPlaningController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\ProfilePageController;
 
 use App\Http\Controllers\Test;
 use App\Models\UserExperienceCategory;
@@ -76,12 +77,18 @@ Route::controller(Test::class) -> group(function() {
 
 Route::controller(LoginController::class) -> group(function() {
     Route::post("/login" , "isLogin");
+    Route::post('/user/visitor' , 'update_last_visit');
 });
 
-Route::get('/profile', function () {
-    $user = JWTAuth::parseToken()->authenticate();
-    return response()->json($user) ;
-})->middleware('jwt.auth');
+
+Route::middleware('jwt.auth')->group(function () {
+    Route::get('/profile', [ProfilePageController::class, 'getUserProfilePageData']);
+    Route::post('/register-experienced', [ProfilePageController::class , 'registerExperienced']);
+});
+
+
+
+
 
 
 //Mail;

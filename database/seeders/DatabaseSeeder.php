@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Region;
 use App\Models\SubCity;
 use Illuminate\Database\Seeder;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Comments;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GendersSeeder::class);
         $this->call(AdminUserSeeder::class);
         $this->call(RatesSeeder::class);
+        $this->call(CommentsSeeder::class);
         
     }
 }

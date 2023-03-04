@@ -9,7 +9,9 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
 use App\Models\Rates;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Comments;
+use App\Models\Comments;
+use App\Models\UserLastSeen;
+use App\Models\MeetingTime;
 
 class Users extends Model implements AuthenticatableContract, JWTSubject
 {
@@ -57,7 +59,12 @@ class Users extends Model implements AuthenticatableContract, JWTSubject
         return $this->hasMany(Rates::class, 'user_id', 'id');
     }
 
-    public function comments() {
-        return $this->hasMany(Comments::class , "to_user_id" , "id");
+    public function get_last_seen() {
+        return $this->hasMany(UserLastSeen::class, 'user_id' , 'id');
     }
+    public function get_meeting_time(){
+        return $this->hasMany(MeetingTime::class, 'user_id' , 'id');
+    }
+
+   
 }
