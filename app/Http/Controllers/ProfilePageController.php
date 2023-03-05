@@ -8,6 +8,8 @@ use App\Models\UserLastSeen;
 use App\Models\Users;
 use App\Models\MeetingTime;
 use App\Models\Comments;
+use App\Models\ExperiencedUsers;
+
 
 class ProfilePageController extends Controller
 {
@@ -52,7 +54,54 @@ class ProfilePageController extends Controller
     return response()->json($user);
    } 
 
-   public function registerExperienced() {
-    
+   public function registerExperienced(Request $request) {
+
+    $id_number = $request->id_number;
+    $user_id = $request->user_id;
+    $exp_desription = $request ->exp_description;
+    $address_info = $request->address_info;
+    $experience_child = $request->experience_child;
+    $experience_parent = $request->experience_parent;
+    $experienced_phone_number = $request->experienced_phone_number;
+    $graduated_info = $request ->graduated_info;
+    $universty = $request->universty;
+    $universty_department = $request->universty_department;
+
+
+
+    try {
+        $user=  Users::findOrFail($user_id);
+        $user->status = 1;
+        $experinced_user = new ExperiencedUsers();
+        $experinced_user -> id_number =   $id_number;
+        $experinced_user -> user_id =   $user_id;
+        $experinced_user -> phone_number =   $experienced_phone_number;
+        $experinced_user -> address =   $address_info;
+        $experinced_user -> education_level =    $graduated_info;
+        $experinced_user -> universty =    $universty;
+        $experinced_user -> department =    $universty_department;
+        $experinced_user -> experienced_parent_category =    $experience_parent;
+        $experinced_user -> experienced_child_category =    $experience_child;
+        $experinced_user -> description =    $exp_desription;
+        $experinced_user -> description =    $exp_desription;
+        $experinced_user->save();
+        $user->save();
+        return response()->json([
+            'result' => true,
+            'code' => 200,
+   ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'code' => 500,
+            'message' => $e,
+            'data' => null,
+   ]);
+    }
+
+    return response()->json([
+        'data' => $id_number,
+        'message' => 'heheheheh'
+    ]);
    }
 }

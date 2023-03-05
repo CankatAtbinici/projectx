@@ -77,7 +77,6 @@ class NewUserController extends Controller
         ]);
     
         try{
-            // Create a new user instance
             $user = new User();
             $user->name = $request->name;
             $user->surname = $request->lastname;

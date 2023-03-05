@@ -86,6 +86,10 @@ Route::middleware('jwt.auth')->group(function () {
     Route::post('/register-experienced', [ProfilePageController::class , 'registerExperienced']);
 });
 
+Route::controller('jwt.auth')->group(function () {
+    Route::post('/register-experienced', [ProfilePageController::class , 'registerExperienced']);
+});
+
 
 
 

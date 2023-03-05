@@ -16,12 +16,16 @@ class CreateUserExperiencedUsersTable extends Migration
         Schema::create('experienced_users', function (Blueprint $table) {
             $table->id();
             $table->string('id_number');
+            $table->integer('user_id');
             $table->string('phone_number');
             $table->string('address');
             $table->string('education_level');
             $table->string('universty');
-            $table->string('depatment');
-            //$table->timestamps();
+            $table->string('department');
+            $table->string('experienced_parent_category');
+            $table->integer('experienced_child_category');
+            $table->string('description');
+            $table->timestamps();
         });
     }
 
