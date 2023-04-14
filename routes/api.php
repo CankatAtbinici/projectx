@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CityController;
-use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewUserController;
 use App\Http\Controllers\MeetingPlaningController;
@@ -63,17 +62,9 @@ Route::controller(CityController::class) -> group(function() {
 
 
 //NEW MEETİNG RESERVATİON CREATE ROUTE
-Route::post('/newmeeting',' MeetingPlaningController@store')->middleware('jwt.auth');
+//Route::post('/newmeeting','MeetingPlaningController@store')->middleware('jwt.auth');
 
 
-
-
-Route::controller(Test::class) -> group(function() {
-    Route::get("/haha" , function() {
-        return "kldaşslkdşalksd";
-        
-    });
-});
 
 Route::controller(LoginController::class) -> group(function() {
     Route::post("/login" , "isLogin");
@@ -81,14 +72,17 @@ Route::controller(LoginController::class) -> group(function() {
 });
 
 
+
 Route::middleware('jwt.auth')->group(function () {
     Route::get('/profile', [ProfilePageController::class, 'getUserProfilePageData']);
-    Route::post('/register-experienced', [ProfilePageController::class , 'registerExperienced']);
+  //  Route::post('/register-experienced', [ProfilePageController::class , 'registerExperienced']);
 });
-
 Route::controller('jwt.auth')->group(function () {
     Route::post('/register-experienced', [ProfilePageController::class , 'registerExperienced']);
+  
 });
+
+Route::get('/profile-visit' , [ProfilePageController::class , 'getProfileVisitData']);
 
 
 
@@ -100,6 +94,6 @@ Route::controller('jwt.auth')->group(function () {
 //LandingPage
 
 
-    Route::get("/landing" , [HomePageController::class , "getAllUserData"]  );
+    Route::get("/landing" , [HomePageController::class , "getAllUserData"]);
 
 

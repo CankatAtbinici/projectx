@@ -19,9 +19,9 @@ class CreateCommentsTable extends Migration
                 $table->integer('to_user_id');
                 $table -> string("content");
                 $table->date('coment_create_time');
-                $table->date('coment_update_time');
-                $table->date('coment_delete_time');
-                $table->boolean('is_delete');
+                $table->date('coment_update_time') ->nullable();
+                $table->date('coment_delete_time')->nullable();
+                $table->boolean('is_delete')->nullable();
         });
     }
 
